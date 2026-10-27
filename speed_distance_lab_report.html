@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speed and Distance Lab Report</title>
+<style>
+  @page { size: letter; margin: 0.55in; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #202124; font: 10.5pt/1.35 Arial, Helvetica, sans-serif; background: #e9edf2; }
+  .page { background: white; width: 8.5in; min-height: 10in; margin: 18px auto; padding: .55in; box-shadow: 0 2px 12px #0002; page-break-after: always; position: relative; }
+  h1,h2,h3 { line-height: 1.15; }
+  h1 { font-size: 25pt; margin: 0 0 12px; }
+  h2 { font-size: 18pt; margin: 0 0 12px; border-bottom: 2px solid #333; padding-bottom: 6px; }
+  h3 { font-size: 12pt; margin: 14px 0 5px; }
+  p { margin: 6px 0 10px; }
+  .subtitle { color: #555; font-size: 14pt; }
+  .cover { display:flex; flex-direction:column; justify-content:center; text-align:center; min-height: 8.8in; }
+  .cover .rule { width: 1.2in; border-top: 4px solid #333; margin: 24px auto; }
+  .fields { margin: 45px auto 0; text-align:left; width: 75%; line-height: 2.2; }
+  .muted { color:#5b626a; }
+  .callout { border-left: 4px solid #555; background:#f4f6f8; padding:9px 12px; margin:10px 0; }
+  table { width:100%; border-collapse:collapse; font-size:9pt; margin:8px 0 12px; }
+  th,td { border:1px solid #9aa0a6; padding:4px 6px; text-align:right; }
+  th { background:#eef1f4; }
+  th:first-child, td:first-child { text-align:center; }
+  .data-table { columns: 2; column-gap: 18px; }
+  .data-table table { break-inside:avoid; margin-top:0; }
+  .graph { width:100%; height:6.2in; display:block; }
+  .graph-note { font-size:9pt; color:#555; }
+  .formula { background:#f6f6f6; padding:8px 10px; font-family: "Courier New", monospace; font-size:9.5pt; overflow-wrap:anywhere; }
+  .work-lines { height:2.3in; border:1px dashed #aaa; margin-top:10px; padding:10px; color:#777; }
+  .footer { position:absolute; bottom:.25in; left:.55in; right:.55in; border-top:1px solid #ddd; padding-top:5px; color:#777; font-size:8pt; display:flex; justify-content:space-between; }
+  .small { font-size:9pt; }
+  @media print { body { background:white; } .page { margin:0; box-shadow:none; width:auto; min-height:9.9in; } }
+  .graph-tooltip {
+  position: fixed;
+  display: none;
+  z-index: 9999;
+  background: #202124;
+  color: white;
+  padding: 8px 11px;
+  border-radius: 6px;
+  font: 12px/1.5 Arial, Helvetica, sans-serif;
+  box-shadow: 0 3px 10px #0003;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.graph-tooltip strong {
+  color: #fff;
+}
+</style>
+</head>
+<body>
+<section class="page cover">
+  <p class="muted" style="letter-spacing:2px;text-transform:uppercase">Calculus Applications Lab</p>
+  <div class="rule"></div>
+  <h1>Approximating Distance<br>from Speedometer Readings</h1>
+  <p class="subtitle">Left Rectangles, Right Rectangles, and the Trapezoidal Rule</p>
+  <div class="fields">
+    <p><strong>Name:</strong> Brandon Sanchez</p>
+    <p><strong>Course / Period:</strong> AP Calculus BC Period 6</p>
+    <p><strong>Teacher:</strong> Mrs. Singler</p>
+  </div>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 1</span></div>
+</section>
+
+<section class="page">
+  <h2>Description of Experiment</h2>
+  <p>We were recording our speed at 10 second intervals to estimate our distance traveled by approximating the area under the curve using left endpoint method, right endpoint method, and trapezoid method to compare it to the distance traveled according to the odometer</p>
+
+  <h3>Method Statement: Calculating LAM, RAM, and TAM</h3>
+  <p><strong>1. Left endpoint method (LAM):</strong> For each interval, use the speed measured at the beginning of that interval. Multiply each of the first 30 speed readings by 10 seconds and add the products. Then divide by 3600 to convert seconds into hours</p>
+  <div class="formula">LAM= change in time * (v0 + v1 + ... + v29)/3600</div>
+  <p><strong>2. Right endpoint method (RAM):</strong> For each interval, use the speed measured at the end of that interval. Multiply each of the last 30 speed readings by 10 seconds and add the products. Then divide by 3600 to convert seconds into hours</p>
+  <div class="formula">RAM= change in time * (v1 + v2 + ... + v30)/3600</div>
+  <p><strong>3. Trapezoidal rule (TAM):</strong> Average the two endpoint speeds for each interval, multiply by the interval width, and add the results. Equivalently, count the first and last readings as half-weighted and all interior readings as full-weighted. Then divide by 3600 to convert seconds into hours</p>
+  <div class="formula">TAM= change in time * ((v0 + v30)/2 + (v1 + v2 + ... + v29))/3600</div>
+
+  <h3>Observations Regarding the Drive</h3>
+  <p>We started at a low speed. From 60 to 80 seconds, we accelerated greatly, increasing from 9 mph to 37 mph. We continued driving at higher speeds, reaching a maximum of 50 mph around 130 seconds. From 150 to 180 seconds, we decelerated greatly, coming to a complete stop. We remained stopped from approximately 180 to 200 seconds before accelerating again. From around 220 to 280 seconds, our speed fluctuated as we repeatedly sped up and slowed down. Toward the end of the drive, we slowed down further, reaching 3 mph at 300 seconds.</p>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 2</span></div>
+</section>
+
+<section class="page">
+  <h2>Completed Data Sheet</h2>
+  <div class="data-table">
+    <table><thead><tr><th>Time (s)</th><th>Speed (mph)</th></tr></thead><tbody>
+      <tr><td>0</td><td>3</td></tr><tr><td>10</td><td>10</td></tr><tr><td>20</td><td>19</td></tr><tr><td>30</td><td>5</td></tr><tr><td>40</td><td>12</td></tr><tr><td>50</td><td>10</td></tr><tr><td>60</td><td>9</td></tr><tr><td>70</td><td>37</td></tr><tr><td>80</td><td>30</td></tr><tr><td>90</td><td>33</td></tr><tr><td>100</td><td>41</td></tr><tr><td>110</td><td>44</td></tr><tr><td>120</td><td>43</td></tr><tr><td>130</td><td>50</td></tr><tr><td>140</td><td>46</td></tr><tr><td>150</td><td>46</td></tr>
+    </tbody></table>
+    <table><thead><tr><th>Time (s)</th><th>Speed (mph)</th></tr></thead><tbody>
+      <tr><td>160</td><td>35</td></tr><tr><td>170</td><td>11</td></tr><tr><td>180</td><td>0</td></tr><tr><td>190</td><td>0</td></tr><tr><td>200</td><td>15</td></tr><tr><td>210</td><td>34</td></tr><tr><td>220</td><td>21</td></tr><tr><td>230</td><td>29</td></tr><tr><td>240</td><td>11</td></tr><tr><td>250</td><td>26</td></tr><tr><td>260</td><td>16</td></tr><tr><td>270</td><td>28</td></tr><tr><td>280</td><td>15</td></tr><tr><td>290</td><td>10</td></tr><tr><td>300</td><td>3</td></tr>
+    </tbody></table>
+  </div>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 3</span></div>
+</section>
+
+<section class="page">
+  <h2>Speed vs. Time: Left Rectangles (LAM)</h2>
+  <svg id="lamGraph" class="graph" role="img" aria-label="Speed versus time line graph with red left endpoint rectangles"></svg>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 4</span></div>
+</section>
+
+<section class="page">
+  <h2>Speed vs. Time: Right Rectangles (RAM)</h2>
+  <svg id="ramGraph" class="graph" role="img" aria-label="Speed versus time line graph with blue right endpoint rectangles"></svg>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 5</span></div>
+</section>
+
+<section class="page">
+  <h2>Speed vs. Time: Trapezoidal Rule (TAM)</h2>
+  <svg id="tamGraph" class="graph" role="img" aria-label="Speed versus time line graph with green trapezoids"></svg>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 6</span></div>
+</section>
+
+<section class="page">
+  <h2>Calculations and Distance Comparison</h2>
+  <h3>Calculated values from the supplied readings</h3>
+  <table><thead><tr><th>Method</th><th>Spreadsheet setup</th><th>Distance estimate (miles)</th></tr></thead><tbody>
+    <tr><td>LAM</td><td><code>=10*SUM(B2:B31)/3600</code></td><td id="lamVal">—</td></tr>
+    <tr><td>RAM</td><td><code>=10*SUM(B3:B32)/3600</code></td><td id="ramVal">—</td></tr>
+    <tr><td>TAM</td><td><code>=10*(0.5*(B2+B32)+SUM(B3:B31))/3600</code></td><td id="tamVal">—</td></tr>
+  </tbody></table>
+  <h3>Final distance based on odometer</h3>
+  <p>Starting odometer reading: 444.7 miles</p>
+  <p>Ending odometer reading: 446.8 miles</p>
+  <p><strong>Odometer distance = ending reading − starting reading =</strong> 2.1 miles</p>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 7</span></div>
+</section>
+
+<section class="page">
+  <h2>Conclusions, Results, and Explanations of Error</h2>
+  <h3>Results</h3>
+  <p>All three methods produced the same estimated distance of 1.9139 miles. The actual distance recorded by the odometer was 2.1 miles, meaning our estimate was .1861 miles less than the actual distance.</p>
+  <h3>Sources of error</h3>
+  <ul>
+    <li><strong>Sampling:</strong> Speed was recorded only every 10 seconds. Changes between readings were not captured.</li>
+    <li><strong>Rapid changes:</strong> Sudden acceleration, braking, and stops can make rectangular approximations less accurate.</li>
+  </ul>
+  <h3>Conclusion</h3>
+  <p>Even though all three results produced the same estimate, they were still different from the odometer reading. Our estimate of 1.9139 miles was reasonably close to the actual distance of 2.1 miles.<p>
+  <div class="footer"><span>Speed and Distance Lab Report</span><span>Page 8</span></div>
+</section>
+
+<script>
+const data = [
+[0,3],[10,10],[20,19],[30,5],[40,12],[50,10],[60,9],[70,37],[80,30],[90,33],
+[100,41],[110,44],[120,43],[130,50],[140,46],[150,46],[160,35],[170,11],[180,0],[190,0],
+[200,15],[210,34],[220,21],[230,29],[240,11],[250,26],[260,16],[270,28],[280,15],[290,10],[300,3]
+];
+const left = data.slice(0,-1).reduce((s,d)=>s+d[1],0)*10;
+const right = data.slice(1).reduce((s,d)=>s+d[1],0)*10;
+const trap = (data[0][1]/2 + data.slice(1,-1).reduce((s,d)=>s+d[1],0) + data[data.length-1][1]/2)*10;
+document.getElementById('lamVal').textContent = (left/3600).toFixed(4);
+document.getElementById('ramVal').textContent = (right/3600).toFixed(4);
+document.getElementById('tamVal').textContent = (trap/3600).toFixed(4);
+
+
+function graph(id, type, color) {
+  const svg = document.getElementById(id);
+  const W = 760, H = 550, L = 72, R = 22, T = 30, B = 65;
+  const PW = W - L - R, PH = H - T - B, maxY = 55;
+
+  const X = t => L + (t / 300) * PW;
+  const Y = v => T + PH - (v / maxY) * PH;
+
+  let s = `<rect x="0" y="0" width="${W}" height="${H}" fill="white"/>`;
+
+  for (let v = 0; v <= 50; v += 10) {
+    s += `<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" stroke="#d7dce1"/>`;
+    s += `<text x="${L-12}" y="${Y(v)+4}" font-size="12" text-anchor="end" fill="#333">${v}</text>`;
+  }
+
+  for (let t = 0; t <= 300; t += 30) {
+    s += `<line x1="${X(t)}" y1="${T}" x2="${X(t)}" y2="${T+PH}" stroke="#edf0f2"/>`;
+    s += `<text x="${X(t)}" y="${T+PH+22}" font-size="11" text-anchor="middle" fill="#333">${t}</text>`;
+  }
+
+  s += `<line x1="${L}" y1="${T+PH}" x2="${W-R}" y2="${T+PH}" stroke="#222" stroke-width="1.5"/>`;
+  s += `<line x1="${L}" y1="${T}" x2="${L}" y2="${T+PH}" stroke="#222" stroke-width="1.5"/>`;
+
+  // Draw the approximation rectangles or trapezoids.
+  if (type === 'left' || type === 'right') {
+    for (let i = 0; i < data.length - 1; i++) {
+      const v = type === 'left' ? data[i][1] : data[i+1][1];
+
+      s += `<rect
+        x="${X(data[i][0])}"
+        y="${Y(v)}"
+        width="${X(data[i+1][0])-X(data[i][0])}"
+        height="${Y(0)-Y(v)}"
+        fill="${color}"
+        fill-opacity="0.34"
+        stroke="${color}"
+        stroke-width="0.8"/>`;
+    }
+  } else {
+    for (let i = 0; i < data.length - 1; i++) {
+      const a = data[i], b = data[i+1];
+
+      s += `<polygon
+        points="${X(a[0])},${Y(0)} ${X(a[0])},${Y(a[1])} ${X(b[0])},${Y(b[1])} ${X(b[0])},${Y(0)}"
+        fill="${color}"
+        fill-opacity="0.36"
+        stroke="${color}"
+        stroke-width="0.8"/>`;
+    }
+  }
+
+  // Draw the measured speed line.
+  const points = data.map(d => `${X(d[0])},${Y(d[1])}`).join(' ');
+  s += `<polyline points="${points}" fill="none" stroke="#252525"
+        stroke-width="2.1" stroke-linejoin="round"/>`;
+
+  // Make only actual data points interactive.
+  data.forEach((d, i) => {
+    s += `<circle
+      class="data-point"
+      data-time="${d[0]}"
+      data-speed="${d[1]}"
+      cx="${X(d[0])}"
+      cy="${Y(d[1])}"
+      r="5"
+      fill="#252525"
+      stroke="white"
+      stroke-width="1.5"
+      style="cursor: crosshair"/>`;
+  });
+
+  s += `<text x="${L+PW/2}" y="${H-16}" font-size="14"
+        text-anchor="middle" fill="#222">Time (seconds)</text>`;
+
+  s += `<text x="18" y="${T+PH/2}" font-size="14"
+        text-anchor="middle" fill="#222"
+        transform="rotate(-90 18 ${T+PH/2})">Speed (mph)</text>`;
+
+  s += `<text x="${W-R}" y="18" font-size="11"
+        text-anchor="end" fill="${color}">${
+          type === 'left' ? 'Left endpoint rectangles' :
+          type === 'right' ? 'Right endpoint rectangles' : 'Trapezoids'
+        }</text>`;
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = s;
+
+  // Create one tooltip for this graph.
+  let tooltip = document.getElementById(id + '-tooltip');
+
+  if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.id = id + '-tooltip';
+    tooltip.className = 'graph-tooltip';
+    document.body.appendChild(tooltip);
+  }
+
+  // Show values only when the pointer is on a measured data point.
+  svg.querySelectorAll('.data-point').forEach(point => {
+    point.addEventListener('pointerenter', event => {
+      tooltip.innerHTML =
+        `<strong>Measured data point</strong><br>` +
+        `Time: ${point.dataset.time} seconds<br>` +
+        `Speed: ${point.dataset.speed} mph`;
+
+      tooltip.style.display = 'block';
+      tooltip.style.left = `${event.clientX + 12}px`;
+      tooltip.style.top = `${event.clientY + 12}px`;
+    });
+
+    point.addEventListener('pointermove', event => {
+      tooltip.style.left = `${event.clientX + 12}px`;
+      tooltip.style.top = `${event.clientY + 12}px`;
+    });
+
+    point.addEventListener('pointerleave', () => {
+      tooltip.style.display = 'none';
+    });
+  });
+}
+
+graph('lamGraph','left','#d62728');
+graph('ramGraph','right','#2468d7');
+graph('tamGraph','trap','#269447');
+</script>
+</body>
+</html>
